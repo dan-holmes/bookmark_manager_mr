@@ -1,19 +1,12 @@
-describe BookmarkList do
+describe Bookmark do
   before :each do
     clear_database
   end
-  describe '#all' do
-    it 'displays lists bookmarks' do
-      @test_connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.facebook.com')")
-      bookmarks = BookmarkList.all
-      expect(bookmarks).to include('http://www.facebook.com')
-    end
-  end
-  describe '#create' do
-    it 'adds a new bookmark to the database' do
-      BookmarkList.create('http://www.myspace.com')
-      bookmarks = BookmarkList.all
-      expect(bookmarks).to include('http://www.myspace.com')
-    end
+  it "adds a new bookmark to the database and retrives it using .all" do
+    Bookmark.create("http://www.myspace.com", "MySpace")
+    bookmarks = Bookmark.all
+    bookmark = bookmarks[0]
+    expect(bookmark.url).to eq "http://www.myspace.com"
+    expect(bookmark.title).to eq "MySpace"
   end
 end

@@ -1,8 +1,8 @@
-<h1>BookmarksList</h1>
+<h1>Bookmarks</h1>
 <ul>
 
 <ul>
-  <% @bookmarks.select do |k, v| %>
-    <li><%= "#{k}: #{v}" %></li>
+  <% @bookmarks.each do |bookmark| %>
+    <li><a href="<%= bookmark.url %>" ><%= bookmark.title %></a></li>
   <% end %>
 </ul>
